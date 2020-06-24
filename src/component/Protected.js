@@ -6,7 +6,6 @@ import {
 function Protected(props) {
     const Cmp = props.cmp
     var auth = JSON.parse(localStorage.getItem('auth'))
-    console.warn(auth)
     return <div> {auth ? <Cmp /> : <Redirect to="login"></Redirect> } </div>
 }
 
