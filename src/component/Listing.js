@@ -9,10 +9,10 @@ export class Listing extends Component {
     }
 
     componentDidMount() {
-        fetch('http://192.168.128.116:8088/staff').then((result) => {
+        fetch('http://cmkserver.com/staff').then((result) => {
             result.json().then((data) => {
-                console.log("data", data);
-                this.setState({ items: data })
+                console.log("data", data.data);
+                this.setState({ items: data.data })
             })
         })
     }

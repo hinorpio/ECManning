@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 
 export class Auth extends Component {
     constructor() {
@@ -12,7 +11,7 @@ export class Auth extends Component {
     login() {
         console.warn("state", this.state)
 
-        fetch('http://192.168.128.116:8088/staff/login', {
+        fetch('http://cmkserver.com/staff/login', {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -23,16 +22,16 @@ export class Auth extends Component {
         }).then((result) => {
             result.json().then((resp) => {
                 console.log(resp);
-                localStorage.setItem("auth", JSON.stringify(resp.firstName))
+                localStorage.setItem("auth", JSON.stringify(resp.data.firstName))
+
             })
         })
-        //alert("login called")
     }
 
     register() {
         console.warn("state", this.state)
 
-        fetch('http://192.168.128.116:8088/staff', {
+        fetch('http://cmkserver.com/staff', {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -43,7 +42,7 @@ export class Auth extends Component {
         }).then((result) => {
             result.json().then((resp) => {
                 console.log(resp);
-                localStorage.setItem("auth", JSON.stringify(resp.firstName))
+                localStorage.setItem("auth", JSON.stringify(resp.data.firstName))
             })
         })
     }
@@ -67,7 +66,7 @@ export class Auth extends Component {
                                 placeholder="password"
                                 onChange={(e) => { this.setState({ password: e.target.value }) }} /><br /><br />
                             <button onClick={() => this.login()}>Login</button>
-                            <button onClick={() => this.setState({ isRegister: true })}>go to Resgister</button>
+                            <button onClick={() => this.setState({ isRegister:true })}>go to Resgister</button>
                         </div>
                         :
                         <div>
@@ -114,7 +113,7 @@ export class Auth extends Component {
                                 placeholder="address"
                                 onChange={(e) => { this.setState({ address: e.target.value }) }} /><br /><br />
                             <button onClick={() => this.register()}>Resgister</button>
-                            <button onClick={() => this.setState({ isRegister: false })}>go to login</button>
+                            <button onClick={() => this.setState({ isRegister:false })}>go to login</button>
                         </div>
                 }
             </div>
